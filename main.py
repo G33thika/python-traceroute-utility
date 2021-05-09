@@ -98,7 +98,7 @@ while hops < 30:
         recv_sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
         recv_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         recv_sock.bind(('ens33', 0))
-        recv_data = recv_sock.recvfrom(65535)[0]
+        recv_data = recv_sock.recv(65535)
         icmp = ICMP(recv_data[34:])
 
         if icmp.type == 11:
